@@ -9,7 +9,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         
-        transactions_to_migrate=Transaction.objects.filter(employee__id=30)
+        transactions_to_migrate=Transaction.objects.filter(employee__id=29)
         print(f"total {transactions_to_migrate.count()} transactions to migrate")
         for transaction in transactions_to_migrate:
             print(transaction.id,transaction.employee, transaction.warehouse,"\n",

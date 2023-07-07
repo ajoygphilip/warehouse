@@ -26,14 +26,10 @@ class Command(BaseCommand):
                                                       capacity=warehouse.capacity)
 
             
-            # print(new_mongo_warehouse,created)
-
             new_mongo_category, created = Mongo_Category.objects.get_or_create(rel_id = product.category.id,
                                                 name = product.category.name,
-                                                description = product.category.description)
-            # print(new_mongo_category)
-            
-            # print(product.id, product.name,product.category,product.warehouse,product.quantity,product.price)
+                                                description = product.category.description)            
+
             new_mongo_product,created = Mongo_Product.objects.get_or_create(rel_id = product.id,
                                                     name = product.name,
                                                     category = new_mongo_category,
@@ -45,13 +41,11 @@ class Command(BaseCommand):
             new_mongo_product.save(update_fields=["price"])
             
             
-            # print("here 1",employee.id,new_mongo_warehouse)
             new_mongo_employee,created = Mongo_Employee.objects.get_or_create(rel_id=employee.id,
                                         name=employee.name,
                                         designation= employee.designation,
                                         warehouse=new_mongo_warehouse
                 )
-            # print("emp",employee)
             new_mongo_transaction = Mongo_Transaction.objects.create(rel_id=transaction.id,
                                                                      product=new_mongo_product,
                                                                      warehouse= new_mongo_warehouse,
